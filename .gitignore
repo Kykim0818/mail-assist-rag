@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.db
+chroma_data/
+.env
+node_modules/
+dist/
+.sisyphus/evidence/
+*.pyc
+
+NUL
+.sisyphus/
