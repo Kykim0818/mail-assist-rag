@@ -3,7 +3,7 @@
 회사 메일을 붙여넣으면 LLM이 자동으로 분류·요약하고, 저장된 메일을 기반으로 RAG Q&A 채팅을 할 수 있는 로컬 웹 애플리케이션입니다.
 
 
-## Quick Start (딱깜 세팅)
+## Quick Start (AI용)
 
 ```bash
 git clone https://github.com/Kykim0818/mail-assist-rag.git
