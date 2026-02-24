@@ -138,19 +138,33 @@ npm install
 
 ## 실행
 
+### 원클릭 실행 (추천)
+
+```bash
+# 프로젝트 루트에서
+python run.py
+```
+
+백엔드(8000) + 프론트엔드(5173)가 동시에 실행되며, `Ctrl+C`로 한 번에 종료됩니다.
+
+```bash
+python run.py --backend   # 백엔드만 실행
+python run.py --frontend  # 프론트엔드만 실행
+```
+
+### 수동 실행
+
 터미널 2개를 열어서 각각 실행합니다.
 
-### 백엔드 서버
+#### 백엔드 서버
 
 ```bash
 # 프로젝트 루트(mail-assist-rag/)에서 실행
 backend\.venv\Scripts\python.exe -m uvicorn backend.main:app --port 8000
-
-# 또는 venv 활성화 후
 uvicorn backend.main:app --port 8000
 ```
 
-### 프론트엔드 서버
+#### 프론트엔드 서버
 
 ```bash
 cd frontend
@@ -158,7 +172,6 @@ npm run dev
 ```
 
 ### 접속
-
 - **웹 UI**: http://localhost:5173
 - **API 문서 (Swagger)**: http://localhost:8000/docs
 
