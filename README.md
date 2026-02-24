@@ -3,63 +3,23 @@
 회사 메일을 붙여넣으면 LLM이 자동으로 분류·요약하고, 저장된 메일을 기반으로 RAG Q&A 채팅을 할 수 있는 로컬 웹 애플리케이션입니다.
 
 
-## Quick Start (OpenCode / LLM 원클릭 세팅)
-
-아래 프롬프트를 OpenCode(또는 다른 AI 코딩 에이전트)에 붙여넣으면 Python/Node.js 설치부터 환경 세팅, 서버 실행까지 자동으로 완료됩니다.
-
-### 1단계: 저장소 클론
+## Quick Start (딱깜 세팅)
 
 ```bash
 git clone https://github.com/Kykim0818/mail-assist-rag.git
-```
-
-### 2단계: OpenCode에서 프로젝트 열기
-
-```bash
 cd mail-assist-rag
 opencode
 ```
 
-### 3단계: 아래 프롬프트를 그대로 붙여넣기
-
-> `YOUR_GITHUB_TOKEN` 부분만 본인의 [GitHub Personal Access Token](https://github.com/settings/tokens)으로 교체하세요.
+OpenCode(또는 AI 코딩 에이전트)에서 아래 한 줄만 붙여넣으면 끝:
 
 ```
-이 프로젝트(mail-assist-rag)의 로컬 개발 환경을 세팅해줘. 아래 순서대로 진행해:
-
-0. 사전 요구사항 확인 및 설치:
-   - Python 3.11+ 가 설치되어 있는지 확인 (python --version 또는 python3 --version)
-   - Node.js 18+ 가 설치되어 있는지 확인 (node --version)
-   - 둘 중 하나라도 없거나 버전이 낮으면 자동으로 설치해줘:
-     - Windows: winget install Python.Python.3.13 && winget install OpenJS.NodeJS.LTS
-     - macOS: brew install python@3.13 node
-     - Linux(Ubuntu/Debian): sudo apt update && sudo apt install -y python3 python3-venv nodejs npm
-   - 설치 후 python, node 명령이 동작하는지 다시 확인해줘.
-
-1. 프로젝트 루트에 .env 파일 생성:
-   GITHUB_TOKEN=YOUR_GITHUB_TOKEN
-   MODEL_NAME=openai/gpt-5-mini
-   EMBEDDING_MODEL=openai/text-embedding-3-small
-   DB_PATH=mail_assistant.db
-   CHROMA_PATH=chroma_data
-
-2. 백엔드 세팅 (backend/ 디렉토리):
-   - python -m venv .venv 으로 가상환경 생성
-   - 가상환경 활성화 후 pip install -r requirements.txt && pip install pydantic-settings
-
-3. 프론트엔드 세팅 (frontend/ 디렉토리):
-   - npm install
-
-4. 세팅 완료 후 백엔드와 프론트엔드 서버를 각각 백그라운드로 실행:
-   - 백엔드: 프로젝트 루트에서 uvicorn backend.main:app --port 8000
-   - 프론트엔드: frontend/ 디렉토리에서 npx vite --port 5173
-
-5. 서버가 뜨면 http://localhost:8000/api/categories 와 http://localhost:5173 에 접속해서 정상 동작 확인해줘.
-
-SSL 인증서 오류가 나면 .env에 SSL_VERIFY=false 를 추가해줘.
+SETUP.md 파일을 읽고 "세팅 지침" 섹션의 내용을 그대로 실행해줘. GITHUB_TOKEN 값은 YOUR_GITHUB_TOKEN 으로 설정해줘.
 ```
 
-> **완료되면**: 브라우저에서 `http://localhost:5173` 접속 → 메일 입력 → 분석하기로 바로 사용 가능합니다.
+> `YOUR_GITHUB_TOKEN`을 본인의 [GitHub Personal Access Token](https://github.com/settings/tokens)으로 교체하세요.
+>
+> 세부 절차는 [SETUP.md](./SETUP.md) 참조
 
 ---
 
