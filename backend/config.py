@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL: str = "openai/text-embedding-3-small"
     DB_PATH: str = "mail_assistant.db"
     CHROMA_PATH: str = "chroma_data"
+    SSL_VERIFY: bool = True
 
 
 settings = Settings()

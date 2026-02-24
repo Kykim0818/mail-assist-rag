@@ -77,7 +77,7 @@ async def chat_completion(
 
     try:
         async with httpx.AsyncClient(
-            base_url=_BASE_URL, timeout=_TIMEOUT
+            base_url=_BASE_URL, timeout=_TIMEOUT, verify=settings.SSL_VERIFY
         ) as client:
             resp = await client.post(
                 "/inference/chat/completions",
@@ -105,7 +105,7 @@ async def create_embedding(
 
     try:
         async with httpx.AsyncClient(
-            base_url=_BASE_URL, timeout=_TIMEOUT
+            base_url=_BASE_URL, timeout=_TIMEOUT, verify=settings.SSL_VERIFY
         ) as client:
             resp = await client.post(
                 "/inference/embeddings",
