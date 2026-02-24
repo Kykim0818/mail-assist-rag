@@ -5,7 +5,7 @@
 
 ## Quick Start (OpenCode / LLM 원클릭 세팅)
 
-Python 3.11+, Node.js 18+가 설치된 환경에서 아래 프롬프트를 OpenCode(또는 다른 AI 코딩 에이전트)에 붙여넣으면 전체 환경 세팅 + 서버 실행까지 자동으로 완료됩니다.
+아래 프롬프트를 OpenCode(또는 다른 AI 코딩 에이전트)에 붙여넣으면 Python/Node.js 설치부터 환경 세팅, 서버 실행까지 자동으로 완료됩니다.
 
 ### 1단계: 저장소 클론
 
@@ -26,6 +26,15 @@ opencode
 
 ```
 이 프로젝트(mail-assist-rag)의 로컬 개발 환경을 세팅해줘. 아래 순서대로 진행해:
+
+0. 사전 요구사항 확인 및 설치:
+   - Python 3.11+ 가 설치되어 있는지 확인 (python --version 또는 python3 --version)
+   - Node.js 18+ 가 설치되어 있는지 확인 (node --version)
+   - 둘 중 하나라도 없거나 버전이 낮으면 자동으로 설치해줘:
+     - Windows: winget install Python.Python.3.13 && winget install OpenJS.NodeJS.LTS
+     - macOS: brew install python@3.13 node
+     - Linux(Ubuntu/Debian): sudo apt update && sudo apt install -y python3 python3-venv nodejs npm
+   - 설치 후 python, node 명령이 동작하는지 다시 확인해줘.
 
 1. 프로젝트 루트에 .env 파일 생성:
    GITHUB_TOKEN=YOUR_GITHUB_TOKEN
@@ -73,8 +82,8 @@ SSL 인증서 오류가 나면 .env에 SSL_VERIFY=false 를 추가해줘.
 
 ## 사전 요구사항
 
-- **Python 3.11+**
-- **Node.js 18+**
+- **Python 3.11+** — 없으면: Windows `winget install Python.Python.3.13` / macOS `brew install python@3.13` / Linux `sudo apt install python3`
+- **Node.js 18+** — 없으면: Windows `winget install OpenJS.NodeJS.LTS` / macOS `brew install node` / Linux `sudo apt install nodejs npm`
 - **GitHub Personal Access Token** — [발급 방법](https://github.com/settings/tokens)
   - GitHub Copilot Business 또는 Enterprise 구독 필요 (Models API 접근용)
 
