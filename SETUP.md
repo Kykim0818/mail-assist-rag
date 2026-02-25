@@ -2,7 +2,7 @@
 
 이 파일을 AI 코딩 에이전트(OpenCode, Cursor, Copilot 등)에 넘기면 환경 세팅부터 서버 실행까지 자동으로 완료됩니다.
 
-> **사전 준비**: [GitHub Personal Access Token](https://github.com/settings/tokens) 발급 필요 (GitHub Copilot Business/Enterprise 구독)
+> **사전 준비**: [GitHub Personal Access Token](https://github.com/settings/tokens) 발급 필요 (Copilot Free 무료 티어부터 사용 가능 — 단, 모델 제한 있음. 자세한 내용은 [README.md](./README.md#github-copilot-구독별-모델-안내) 참조)
 
 ---
 
@@ -32,11 +32,25 @@ SETUP.md 파일을 읽고 "세팅 지침" 섹션의 내용을 그대로 실행�
 
 ### 1. 환경 변수 (.env 파일 생성)
 
-프로젝트 루트에 `.env` 파일을 생성:
+프로젝트 루트에 `.env` 파일을 생성. **본인의 Copilot 구독에 맞는 설정**을 사용하세요.
+
+#### Copilot Pro / Business / Enterprise (유료)
 
 ```
 GITHUB_TOKEN=YOUR_GITHUB_TOKEN
 MODEL_NAME=openai/gpt-5-mini
+EMBEDDING_MODEL=openai/text-embedding-3-small
+DB_PATH=mail_assistant.db
+CHROMA_PATH=chroma_data
+```
+
+#### Copilot Free (무료)
+
+`gpt-5-mini`는 무료 티어에서 사용할 수 없으므로 대안 모델을 사용합니다.
+
+```
+GITHUB_TOKEN=YOUR_GITHUB_TOKEN
+MODEL_NAME=Meta-Llama-3.1-8B-Instruct
 EMBEDDING_MODEL=openai/text-embedding-3-small
 DB_PATH=mail_assistant.db
 CHROMA_PATH=chroma_data

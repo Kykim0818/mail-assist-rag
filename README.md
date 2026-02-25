@@ -45,7 +45,7 @@ SETUP.md 파일을 읽고 "세팅 지침" 섹션의 내용을 그대로 실행�
 - **Python 3.11+** — 없으면: Windows `winget install Python.Python.3.13` / macOS `brew install python@3.13` / Linux `sudo apt install python3`
 - **Node.js 18+** — 없으면: Windows `winget install OpenJS.NodeJS.LTS` / macOS `brew install node` / Linux `sudo apt install nodejs npm`
 - **GitHub Personal Access Token** — [발급 방법](https://github.com/settings/tokens)
-  - GitHub Copilot Business 또는 Enterprise 구독 필요 (Models API 접근용)
+  - Copilot Free(무료)로도 사용 가능 — 단, 모델 제한 있음 ([아래 참조](#github-copilot-구독별-모델-안내))
 
 ## 설치
 
@@ -58,12 +58,27 @@ cd mail-assist-rag
 
 ### 2. 환경 변수 설정
 
-프로젝트 루트에 `.env` 파일을 생성합니다.
+프로젝트 루트에 `.env` 파일을 생성합니다. **본인의 Copilot 구독에 맞는 설정**을 사용하세요.
+
+#### Copilot Pro / Business / Enterprise (유료)
 
 ```bash
 # .env
 GITHUB_TOKEN=ghp_여기에_실제_토큰을_입력하세요
 MODEL_NAME=openai/gpt-5-mini
+EMBEDDING_MODEL=openai/text-embedding-3-small
+DB_PATH=mail_assistant.db
+CHROMA_PATH=chroma_data
+```
+
+#### Copilot Free (무료)
+
+`gpt-5-mini`는 무료 티어에서 사용할 수 없으므로 대안 모델을 사용합니다.
+
+```bash
+# .env
+GITHUB_TOKEN=ghp_여기에_실제_토큰을_입력하세요
+MODEL_NAME=Meta-Llama-3.1-8B-Instruct
 EMBEDDING_MODEL=openai/text-embedding-3-small
 DB_PATH=mail_assistant.db
 CHROMA_PATH=chroma_data
@@ -237,6 +252,22 @@ pytest -m integration           # 통합 테스트만 (9개)
 | `DB_PATH` | `mail_assistant.db` | SQLite DB 파일 경로 |
 | `CHROMA_PATH` | `chroma_data` | ChromaDB 저장 디렉토리 |
 | `SSL_VERIFY` | `true` | SSL 인증서 검증 (`false`로 설정 시 비활성화) |
+
+## GitHub Copilot 구독별 모델 안내
+
+이 프로젝트는 [GitHub Models API](https://github.com/marketplace/models)를 사용합니다. 구독 티어에 따라 사용 가능한 모델이 다릅니다.
+
+| 구독 | 채팅 모델 (`MODEL_NAME`) | 임베딩 모델 | 일일 요청 한도 |
+|---|---|---|---|
+| **Free** (무료) | `Meta-Llama-3.1-8B-Instruct`, `Mistral-Small` 등 | `openai/text-embedding-3-small` ✅ | 채팅 150건, 임베딩 150건 |
+| **Pro** ($10/월) | 위 모델 + `openai/gpt-5-mini` | 동일 | `gpt-5-mini` 12건/일 |
+| **Business** | 위 모델 + 더 높은 한도 | 동일 | `gpt-5-mini` 15건/일 |
+| **Enterprise** | 모든 모델 + 최대 한도 | 동일 | `gpt-5-mini` 20건/일 |
+
+> **핵심**: `openai/gpt-5-mini`는 **Copilot Pro 이상**에서만 사용 가능합니다.
+> 무료 티어에서는 `.env`의 `MODEL_NAME`을 `Meta-Llama-3.1-8B-Instruct` 등으로 변경하세요.
+>
+> 최신 모델 목록과 rate limit은 [GitHub Models 공식 문서](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits)를 참조하세요.
 
 ## 라이선스
 
